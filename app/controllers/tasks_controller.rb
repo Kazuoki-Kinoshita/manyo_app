@@ -14,11 +14,26 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save
-      flash[:notice] = "タスク作成しました！"
+      flash[:success] = "タスク作成しました！"
       redirect_to tasks_path
     else
       render :new
     end
+  end
+
+  def edit
+    @task = Task.find(params[:id])
+  end
+
+  def update
+    @task = Task.find(params[:id])
+    if @task.update(task_params)
+      flash[:success] = "タスク編集しました！"
+      redirect_to tasks_path
+    else
+      render :edit
+    end
+
   end
 
 
