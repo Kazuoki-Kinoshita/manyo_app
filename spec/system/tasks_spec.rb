@@ -9,9 +9,9 @@ RSpec.describe 'タスク管理機能', type: :system do
     context 'タスクを新規作成した場合' do
       it '作成したタスクが表示される' do
         visit new_task_path
-        fill_in 'Title', with: 'new_task'
-        fill_in 'Content', with: 'new_content'
-        click_button 'Create Task'
+        fill_in 'タイトル', with: 'new_task'
+        fill_in '内容', with: 'new_content'
+        click_button '登録する'
         visit tasks_path
         expect(page).to have_content 'new_task'
         expect(page).to have_content 'new_content'
