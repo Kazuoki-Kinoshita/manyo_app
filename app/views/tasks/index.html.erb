@@ -1,20 +1,22 @@
-<h1>タスク一覧</h1>
+<h1><%= t("view.task.index") %></h1>
 
 <table>
   <ul>
     <tr>
-      <th>タスク名</th>
-      <th>内容</th>
+      <th><%= t("view.task.title") %></th>
+      <th><%= t("view.task.content") %></th>
     </tr>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.title %></td>
-        <td><%= task.content %></td>
-        <td><%= link_to "詳細", task_path(task.id) %></td>
-        <td><%= link_to "編集", edit_task_path(task.id) %></td>
-        <td><%= link_to "削除", task_path(task.id), method: :delete %></td>
-      </tr>
-    <% end %>
+    <tbody class='task_row'>
+      <% @tasks.each do |task| %>
+        <tr >
+          <td><%= task.title %></td>
+          <td><%= task.content %></td>
+          <td><%= link_to t("view.link_to.show"), task_path(task.id) %></td>
+          <td><%= link_to t("view.link_to.edit"), edit_task_path(task.id) %></td>
+          <td><%= link_to t("view.link_to.destroy"), task_path(task.id), method: :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
   </ul>
 </table>
-<%= link_to "タスクを作成する", new_task_path %>
+<%= link_to t("view.link_to.new"), new_task_path %>
