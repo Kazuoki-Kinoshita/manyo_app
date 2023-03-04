@@ -16,7 +16,7 @@
   <%= f.label :expired_at %>
   <%= f.date_field :expired_at %>
   <%= f.label :status %>
-  <%= f.select :status, [["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"] ] %>
+  <%= f.select :status, [["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]], include_blank: "選択して下さい" %>
   <%= f.submit %>
 <% end %>
 <%= link_to t("view.link_to.back"), tasks_path %>
