@@ -1,4 +1,4 @@
-ActiveRecord::Schema.define(version: 2023_03_04_101411) do
+ActiveRecord::Schema.define(version: 2023_03_04_112115) do
 
   enable_extension "plpgsql"
 
@@ -8,7 +8,7 @@ ActiveRecord::Schema.define(version: 2023_03_04_101411) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.date "expired_at", default: -> { "CURRENT_DATE" }, null: false
-    t.integer "status", default: 0, null: false
+    t.integer "status", null: false
   end
 
 end
