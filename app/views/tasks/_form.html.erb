@@ -13,6 +13,8 @@
   <%= f.text_field :title %>
   <%= f.label :content %>
   <%= f.text_field :content %>
+  <%= f.label :expired_at %>
+  <%= f.date_field :expired_at %>
   <%= f.submit %>
 <% end %>
 <%= link_to t("view.link_to.back"), tasks_path %>
