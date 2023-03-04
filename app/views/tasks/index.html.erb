@@ -2,11 +2,12 @@
 
 <table>
   <ul>
-    <tr>
-      <th><%= t("view.task.title") %></th>
-      <th><%= t("view.task.content") %></th>
-      <th><%= link_to "終了期限", tasks_path(sort_expired: "true") %></th>
-
+    <tbody class='task_expired_at'>
+      <tr>
+        <th><%= t("view.task.title") %></th>
+        <th><%= t("view.task.content") %></th>
+        <th><%= link_to "終了期限", tasks_path(sort_expired: "true") %></th>
+    </tbody>
     </tr>
     <tbody class='task_row'>
       <% @tasks.each do |task| %>
