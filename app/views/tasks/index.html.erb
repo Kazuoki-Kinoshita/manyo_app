@@ -1,8 +1,10 @@
 <h1><%= t("view.task.index") %></h1>
 
 <%= form_with(scope: :task, local: true, url: tasks_path, method: :GET) do |f| %>
-  <%= f.label :title , t("view.task.title")%>
+  <%= f.label :title , t("view.task.title") %>
   <%= f.text_field :title %>
+  <%= f.label :status, t("view.task.status") %>
+  <%= f.select :status, Task.statuses.keys, {prompt: "選択してください"}, class: "status-select" %>
   <%= f.submit "検索" %>
 <% end %>
 
