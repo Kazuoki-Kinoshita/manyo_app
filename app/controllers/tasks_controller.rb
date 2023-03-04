@@ -4,6 +4,7 @@ class TasksController < ApplicationController
   def index
     @tasks = Task.all.order(created_at: :desc)
     @tasks = Task.all.order(expired_at: :desc) if params[:sort_expired]
+    @tasks = Task.where("title LIKE ?", "%#{params[:task][:title]}%") if params[:task].present?
   end
 
   def show

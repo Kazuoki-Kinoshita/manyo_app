@@ -4,7 +4,7 @@ ja:
       task: タスク
     attributes:
       task:
-        title: タイトル
+        title: タスク名
         content: 内容
         expired_at: 終了期限
         status: ステータス
@@ -27,3 +27,5 @@ ja:
       expired_at: 終了期限：
       status: ステータス
       status_show: ステータス：
+  task:
+    title: タイトル 
