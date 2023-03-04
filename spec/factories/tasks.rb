@@ -1,13 +1,22 @@
 FactoryBot.define do
   factory :task do
-    title { 'task1-1' }
-    content { 'task1-2' }
+    title { 'first_title' }
+    content { 'first_content' }
     expired_at { '2023-04-25' }
+    status { '着手中' }
   end
 
   factory :second_task, class: Task do
-    title { 'task2-1' }
-    content { 'task2-2' }
+    title { 'second_title' }
+    content { 'second_content' }
     expired_at { '2023-01-01' }
+    status { '未着手' }
+  end
+
+  factory :third_task, class: Task do
+    title { 'third_title' }
+    content { 'third_content' }
+    expired_at { '2023-12-31' }
+    status { '着手中' }
   end
 end
