@@ -1,4 +1,4 @@
-ActiveRecord::Schema.define(version: 2023_03_05_110900) do
+ActiveRecord::Schema.define(version: 2023_03_05_124615) do
 
   enable_extension "plpgsql"
 
@@ -7,7 +7,7 @@ ActiveRecord::Schema.define(version: 2023_03_05_110900) do
     t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.date "expired_at", default: ->   { "CURRENT_DATE" }, null: false
+    t.date "expired_at", default: -> { "CURRENT_DATE" }, null: false
     t.integer "status", null: false
     t.integer "priority", null: false
   end
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2023_03_05_110900) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end
