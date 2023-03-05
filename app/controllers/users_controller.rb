@@ -6,10 +6,15 @@ class UsersController < ApplicationController
   def create
     @user = User.new(users_params)
     if @user.save
+      flash[:notice] = "ユーザ登録しました！"
       redirect_to user_path(@user.id)
     else
       render :new
     end
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
 
