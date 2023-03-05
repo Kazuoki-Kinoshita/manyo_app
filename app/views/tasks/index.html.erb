@@ -1,5 +1,6 @@
 <h1><%= t("view.task.index") %></h1>
 
+<main class="p-index">
 <%= form_with(scope: :task, local: true, url: tasks_path, method: :GET) do |f| %>
   <%= f.label :title , t("view.task.title") %>
   <%= f.text_field :title %>
@@ -8,7 +9,7 @@
   <%= f.submit "検索" %>
 <% end %>
 
-<table>
+<table class="p-index__introduce">
   <ul>
     <tbody class='task_expired_at'>
       <tr>
@@ -37,4 +38,6 @@
     </tbody>
   </ul>
 </table>
+<div class="p-index__paginate"><%= paginate(@tasks) %></div>
 <%= link_to t("view.link_to.new"), new_task_path %>
+</main>
