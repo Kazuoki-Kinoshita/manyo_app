@@ -30,3 +30,5 @@ ja:
       status_show: ステータス：
       priority: 優先度
       priority_show: 優先度：
+      created_at: 登録日時
+      created_at_show: 登録日時：

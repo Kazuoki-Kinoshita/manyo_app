@@ -15,6 +15,7 @@
         <th><%= t("view.task.title") %></th>
         <th><%= t("view.task.content") %></th>
         <th><%= link_to "終了期限", tasks_path(sort_expired: "true") %></th>
+        <th><%= t("view.task.created_at") %></th>
         <th><%= t("view.task.status") %></th>
         <th><%= link_to "優先度", tasks_path(sort_priority: "true") %></th>
     </tbody>
@@ -25,6 +26,7 @@
           <td><%= task.title %></td>
           <td><%= task.content %></td>
           <td><%= task.expired_at %></td>
+          <td><%= task.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
           <td><%= task.status %></td>
           <td><%= task.priority %></td>
           <td><%= link_to t("view.link_to.show"), task_path(task.id) %></td>
