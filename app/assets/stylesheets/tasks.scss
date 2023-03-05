@@ -1,3 +1,17 @@
-// Place all the styles related to the tasks controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+ .p-index {
+  min-width: 960px;
+  &__title {
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  &__introduce {
+    margin: 0 auto;
+    th {
+        padding: 0 20px;
+    }
+    td {
+      padding: 0 20px;
+    }
+  }
+ }

@@ -4,11 +4,14 @@ ja:
       task: タスク
     attributes:
       task:
-        title: タイトル
+        title: タスク名
         content: 内容
+        expired_at: 終了期限
+        status: ステータス
+        priority: 優先度
   view:
     link_to:
-      new: タスクを作成する
+      new: 新規作成
       back: 戻る
       show: 詳細
       edit: 編集
@@ -22,3 +25,10 @@ ja:
       title_show: タスク名：
       content: 内容
       content_show: 内容：
+      expired_at: 終了期限：
+      status: ステータス
+      status_show: ステータス：
+      priority: 優先度
+      priority_show: 優先度：
+      created_at: 登録日時
+      created_at_show: 登録日時：
