@@ -3,18 +3,20 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.created_at_sorted
-    @tasks = Task.expired_at_sorted if params[:sort_expired]
-
-    if params[:task].present?
-      if params[:task][:title].present? && params[:task][:status].present?
-        @tasks = Task.title_and_status_search(params[:task][:title], params[:task][:status]) 
-      elsif params[:task][:title].present?
-        @tasks = Task.title_search(params[:task][:title]) 
-      elsif params[:task][:status].present?
-        @tasks = Task.status_search(params[:task][:status]) 
+    if params[:sort_expired]
+      @tasks = Task.expired_at_sorted
+    elsif params[:sort_priority]
+      @tasks = Task.priority_sorted
+    elsif params[:task].present?
+        if params[:task][:title].present? && params[:task][:status].present?
+          @tasks = Task.title_and_status_search(params[:task][:title], params[:task][:status]) 
+        elsif params[:task][:title].present?
+          @tasks = Task.title_search(params[:task][:title]) 
+        elsif params[:task][:status].present?
+          @tasks = Task.status_search(params[:task][:status]) 
+        end
       end
     end
-  end
 
   def show
   end
@@ -55,7 +57,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :content, :expired_at, :status)
+    params.require(:task).permit(:title, :content, :expired_at, :status, :priority)
   end
   
   def set_task
