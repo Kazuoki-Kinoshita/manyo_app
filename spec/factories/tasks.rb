@@ -12,7 +12,7 @@ FactoryBot.define do
     content { 'second_content' }
     expired_at { '2023-01-01' }
     status { '未着手' }
-    priority { '中' }
+    priority { '低' }
   end
 
   factory :third_task, class: Task do

@@ -11,11 +11,13 @@ RSpec.describe 'タスク管理機能', type: :system do
         fill_in '内容', with: 'new_content'
         fill_in '終了期限', with: Date.new(2023, 5, 4)
         select '完了', from: 'ステータス'
+        select '中', from: '優先度'
         click_button '登録する'
         expect(page).to have_content 'new_task'
         expect(page).to have_content 'new_content'
         expect(page).to have_content '2023-05-04'
         expect(page).to have_content '完了'
+        expect(page).to have_content '中'
       end
     end
   end
@@ -34,6 +36,8 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(page).to have_content '2023-01-01'
         expect(page).to have_content '着手中'
         expect(page).to have_content '未着手'
+        expect(page).to have_content '高'
+        expect(page).to have_content '低'
       end
     end
     context 'タスクが作成日時の降順に並んでいる場合' do
@@ -43,16 +47,29 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(new_task).to have_content 'second_content'
         expect(new_task).to have_content '2023-01-01'
         expect(new_task).to have_content '未着手'
+        expect(new_task).to have_content '低'
       end
     end
 
     context '終了期限をクリックするとタスクが降順に並んでいる場合' do
-      it '終了期限が一番遠いタスクが一番上に表示される' do
+      it '終了期限が一番あとのタスクが一番上に表示される' do
         click_on '終了期限'
         sleep(1)
-        most_recent_task = all('.task_row tr')[0]
-        expect(most_recent_task).to have_content '2023-04-25'
-        expect(most_recent_task).to have_content '着手中'
+        latest_task = all('.task_row tr')[0]
+        expect(latest_task).to have_content '2023-04-25'
+        expect(latest_task).to have_content '着手中'
+        expect(latest_task).to have_content '高'
+      end
+    end
+
+    context '優先度をクリックするとタスクが降順に並んでいる場合' do
+      it '優先度が一番高いタスク（高）が一番上に表示される' do
+        click_on '優先度'
+        sleep(1)
+        highest_priority = all('.task_row tr')[0]
+        expect(highest_priority).to have_content '2023-04-25'
+        expect(highest_priority).to have_content '着手中'
+        expect(highest_priority).to have_content '高'
       end
     end
   end
