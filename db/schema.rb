@@ -1,4 +1,4 @@
-ActiveRecord::Schema.define(version: 2023_03_05_023819) do
+ActiveRecord::Schema.define(version: 2023_03_05_110900) do
 
   enable_extension "plpgsql"
 
@@ -7,9 +7,17 @@ ActiveRecord::Schema.define(version: 2023_03_05_023819) do
     t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.date "expired_at", default: -> { "CURRENT_DATE" }, null: false
+    t.date "expired_at", default: ->   { "CURRENT_DATE" }, null: false
     t.integer "status", null: false
     t.integer "priority", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end
