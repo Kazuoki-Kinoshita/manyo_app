@@ -10,15 +10,15 @@
   <% end %>
 
   <%= f.label :title %>
-  <%= f.text_field :title %>
+  <p><%= f.text_field :title %></p>
   <%= f.label :content %>
-  <%= f.text_field :content %>
+  <p><%= f.text_field :content %></p>
   <%= f.label :expired_at %>
-  <%= f.date_field :expired_at %>
+  <p><%= f.date_field :expired_at %></p>
   <%= f.label :status %>
-  <%= f.select :status, Task.statuses.keys, {include_blank: "選択してください"} %>
+  <p><%= f.select :status, Task.statuses.keys, {include_blank: "選択してください"} %></p>
   <%= f.label :priority %>
-  <%= f.select :priority, Task.priorities.keys, {include_blank: "選択してください"} %>
-  <%= f.submit %>
+  <p><%= f.select :priority, Task.priorities.keys, {include_blank: "選択してください"} %></p>
+  <p><%= f.submit %></p>
 <% end %>
-<%= link_to t("view.link_to.back"), tasks_path %>
+<%= link_to t("view.link_to.back"), tasks_path, class: "btn btn-secondary" %>

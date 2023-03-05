@@ -6,4 +6,4 @@
 <p><%= t("view.task.created_at_show") %><%= @task.created_at.strftime("%Y-%m-%d %H:%M:%S") %></p>
 <p><%= t("view.task.status_show") %><%= @task.status %></p>
 <p><%= t("view.task.priority_show") %><%= @task.priority %></p>
-<%= link_to t("view.link_to.back"), tasks_path %>
+<%= link_to t("view.link_to.back"), tasks_path, class: "btn btn-secondary" %>

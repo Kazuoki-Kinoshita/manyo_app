@@ -11,7 +11,7 @@ ja:
         priority: 優先度
   view:
     link_to:
-      new: タスクを作成する
+      new: 新規作成
       back: 戻る
       show: 詳細
       edit: 編集
