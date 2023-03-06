@@ -1,4 +1,4 @@
-ActiveRecord::Schema.define(version: 2023_03_05_130414) do
+ActiveRecord::Schema.define(version: 2023_03_06_063226) do
 
   enable_extension "plpgsql"
 
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2023_03_05_130414) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

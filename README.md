@@ -8,7 +8,7 @@ task
 |      id       |  integer |
 |     title     |  string  |
 |     contet    |  text    |
-|   deadline    |  date    |
+|  expired_at   |  date    |
 |     status    |  string  |
 |   priority    |  string  |
 |    user_id    |  integer |
@@ -20,6 +20,7 @@ user
 |     name      |  string  |
 |    email      |  string  |
 |password_digest|  string  |
+|    admin      |  boolean |
 
 label  
 |    物理名      | データ型  |
