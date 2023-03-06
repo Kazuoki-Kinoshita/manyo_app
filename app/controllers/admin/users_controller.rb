@@ -52,7 +52,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def admin_user
-    unless current_user.admin?
+    unless current_user && current_user.admin?
       flash[:danger] = "管理者以外はアクセスできません！"
       redirect_to tasks_path
     end
