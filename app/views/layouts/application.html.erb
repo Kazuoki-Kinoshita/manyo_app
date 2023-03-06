@@ -14,10 +14,20 @@
   </head>
 
   <body>
+    <div class="container">  
     <% flash.each do |key,value| %>
       <%= content_tag(:div, value, class:"#{value}") %>
     <% end %>
-    <div class="container">
+  
+    <% if logged_in? %>
+      <%= link_to "タスク登録", new_task_path %>
+      <%= link_to "タスク一覧", tasks_path %>
+      <%= link_to "アカウント詳細", user_path(current_user.id) %>
+      <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
+    <% else %>
+      <%= link_to "ユーザ登録", new_user_path %>
+      <%= link_to "ログイン", new_session_path %>
+    <% end %>
     <%= yield %>
     </div>
   </body>
