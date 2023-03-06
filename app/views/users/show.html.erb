@@ -2,3 +2,7 @@
 
 <p>ユーザ名：<%= @user.name %></p>
 <p>メールアドレス：<%= @user.email %></p>
+
+<% if @user.admin? %>
+  <%= link_to "管理者画面はこちら", admin_users_path, class: "btn btn-primary" %>
+<% end %>
