@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = Task.created_at_sorted.page(params[:page])
+    @tasks = current_user.tasks.created_at_sorted.page(params[:page])
     if params[:sort_expired]
       @tasks = Task.expired_at_sorted.page(params[:page])
     elsif params[:sort_priority]
