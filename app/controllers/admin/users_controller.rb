@@ -1,5 +1,7 @@
 class Admin::UsersController < ApplicationController
   skip_before_action :login_required
+  before_action :set_admin_user, only: [:edit, :update, :destroy]
+
   # 後でbefore_action追加、セッションIDも検討
   #  before_action :admin_user
   # def admin_user
@@ -27,11 +29,9 @@ class Admin::UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(admin_users_params)
       flash[:notice] = "ユーザ情報を編集しました！"
       redirect_to admin_users_path
@@ -40,15 +40,20 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @task.destroy
-  #   flash[:notice] = "タスクを削除しました！"
-  #   redirect_to tasks_path
-  # end
+  def destroy
+    @user.destroy
+    flash[:notice] = "ユーザを削除しました！"
+    redirect_to admin_users_path
+  end
 
+  
   private 
 
   def admin_users_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def set_admin_user
+    @user = User.find(params[:id])
   end
 end
