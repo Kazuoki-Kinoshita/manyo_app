@@ -4,7 +4,7 @@ class Admin::UsersController < ApplicationController
   before_action :admin_user
 
   def index
-    @users = User.all.includes(:tasks)
+    @users = User.all.includes(:tasks).order(created_at: :desc)
   end
 
   def new
