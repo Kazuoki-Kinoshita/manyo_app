@@ -16,7 +16,7 @@ class Admin::UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "ユーザ登録しました！"
-      redirect_to admin_users_path
+      redirect_to user_path(@user.id)
     else
       render :new
     end
