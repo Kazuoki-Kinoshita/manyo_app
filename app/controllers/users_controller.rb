@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
+  before_action :login_user_control, only: [:new, :create]
 
   def new
     @user = User.new
@@ -28,5 +29,9 @@ class UsersController < ApplicationController
 
   def users_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def login_user_control
+    redirect_to tasks_path if current_user 
   end
 end
