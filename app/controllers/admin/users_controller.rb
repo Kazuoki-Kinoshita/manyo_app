@@ -19,7 +19,6 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(admin_users_params)
     if @user.save
-      #  このセッションIDが必要か要検討
       session[:user_id] = @user.id
       flash[:notice] = "ユーザ登録しました！"
       redirect_to admin_users_path
