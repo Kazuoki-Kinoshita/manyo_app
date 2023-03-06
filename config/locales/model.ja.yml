@@ -2,6 +2,8 @@ ja:
   activerecord:
     models:
       task: タスク
+      session: ログイン
+
     attributes:
       task:
         title: タスク名
@@ -9,6 +11,15 @@ ja:
         expired_at: 終了期限
         status: ステータス
         priority: 優先度
+      user:
+        title: タイトル
+        name: 名前
+        email: メールアドレス
+        current_password: 現在のパスワード
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        remember_me: ログインを記憶
+
   view:
     link_to:
       new: 新規作成
@@ -34,3 +45,6 @@ ja:
       created_at_show: 登録日時：
       user_name: ユーザ名
       user_name_show: ユーザ名：
+  session:
+    email: メールアドレス
+    password: パスワード
