@@ -1,12 +1,7 @@
 class Admin::UsersController < ApplicationController
   skip_before_action :login_required
-  before_action :set_admin_user, only: [:edit, :update, :destroy]
-
-  # 後でbefore_action追加、セッションIDも検討
-  #  before_action :admin_user
-  # def admin_user
-  #   redirect_to(root_path) unless current_user.admin?
-  # end
+  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :admin_user
 
   def index
     @users = User.all.includes(:tasks)
@@ -52,7 +47,14 @@ class Admin::UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
-  def set_admin_user
+  def set_user
     @user = User.find(params[:id])
   end
+
+  def admin_user
+    unless current_user.admin?
+      flash[:danger] = "管理者以外はアクセスできません！"
+      redirect_to tasks_path
+    end
+  end  
 end
