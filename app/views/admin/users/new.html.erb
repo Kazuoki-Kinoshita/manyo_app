@@ -19,5 +19,7 @@
   <%= f.password_field :password %><br>
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %><br>
+  <%= f.label :admin %>
+  <%= f.select :admin, [['なし', false],['あり', true]]%>
   <%= f.submit %><br>
 <% end %>

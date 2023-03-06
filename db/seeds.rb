@@ -1,6 +1,7 @@
 User.create!(
-  name: 'kinoshita',
-  email: 'kino@yahoo.co.jp',
-  password: "kinoshita",
-  password_confirmation: "kinoshita"
+  name: 'kinoshita2',
+  email: 'kino2222222@yahoo.co.jp',
+  password: "kinoshita2",
+  password_confirmation: "kinoshita2",
+  admin: true
 )
