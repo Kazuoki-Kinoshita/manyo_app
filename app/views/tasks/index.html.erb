@@ -7,8 +7,10 @@
   <%= f.label :status, t("view.task.status") %>
   <%= f.select :status, Task.statuses.keys, {prompt: "選択してください"} %>
   <%= f.submit "検索" %>
-<% end %>
+<% end %><br>
 
+<p><%= link_to t("view.link_to.new"), new_task_path, class: "btn btn-primary" %></p>
+<p><%= @tasks.count %>件のタスクが表示されています</p>
 <table class="p-index__introduce">
   <ul>
     <tbody class='task_expired_at'>
@@ -23,7 +25,6 @@
     </tbody>
     </tr>
 
-    <%= link_to t("view.link_to.new"), new_task_path, class: "btn btn-primary" %>
     <tbody class='task_row'>
       <% @tasks.each do |task| %>
         <tr>

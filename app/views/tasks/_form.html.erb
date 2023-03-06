@@ -21,4 +21,3 @@
   <p><%= f.select :priority, Task.priorities.keys, {include_blank: "選択してください"} %></p>
   <p><%= f.submit %></p>
 <% end %>
-<%= link_to t("view.link_to.back"), tasks_path, class: "btn btn-secondary" %>
