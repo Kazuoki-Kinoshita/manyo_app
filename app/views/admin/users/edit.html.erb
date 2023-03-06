@@ -1,0 +1,19 @@
+<h1>管理画面のユーザ編集</h1>
+
+<%= form_with(model: @user, local: true, url: admin_user_path(@user.id)) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+  <%= f.label :email %>
+  <%= f.email_field :email %><br>
+  <%= f.submit %><br>
+<% end %>

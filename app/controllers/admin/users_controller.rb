@@ -26,6 +26,25 @@ class Admin::UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(admin_users_params)
+      flash[:notice] = "ユーザ情報を編集しました！"
+      redirect_to admin_users_path
+    else
+      render :edit
+    end
+  end
+
+  # def destroy
+  #   @task.destroy
+  #   flash[:notice] = "タスクを削除しました！"
+  #   redirect_to tasks_path
+  # end
 
   private 
 
