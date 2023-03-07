@@ -7,7 +7,6 @@
 <table>
   <ul>
     <tr>
-      <th><%= t("view.task.user_name") %></th>
       <th><%= t("view.task.title") %></th>
       <th><%= t("view.task.content") %></th>
       <th><%= "終了期限" %></th>
@@ -18,7 +17,6 @@
 
     <% @user.tasks.each do |task| %>
       <tr>
-        <td><%= task.user.name %></td>
         <td><%= task.title %></td>
         <td><%= task.content %></td>
         <td><%= task.expired_at %></td>
