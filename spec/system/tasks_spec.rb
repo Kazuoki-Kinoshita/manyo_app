@@ -1,7 +1,15 @@
 require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
-    let!(:task1) { FactoryBot.create(:task) }
-    let!(:task2) { FactoryBot.create(:second_task) }
+    let!(:user) { FactoryBot.create(:user) }
+    let!(:task) { FactoryBot.create(:task, user: user) }
+    let!(:task2) { FactoryBot.create(:task2, user: user) }
+
+    before do
+      visit new_session_path
+      fill_in "メールアドレス", with: user.email
+      fill_in "パスワード", with: user.password
+      click_button "ログイン"
+    end
 
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
@@ -38,6 +46,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(page).to have_content '未着手'
         expect(page).to have_content '高'
         expect(page).to have_content '低'
+
       end
     end
     context 'タスクが作成日時の降順に並んでいる場合' do
@@ -50,7 +59,6 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(new_task).to have_content '低'
       end
     end
-
     context '終了期限をクリックするとタスクが降順に並んでいる場合' do
       it '終了期限が一番あとのタスクが一番上に表示される' do
         click_on '終了期限'
@@ -61,7 +69,6 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(latest_task).to have_content '高'
       end
     end
-
     context '優先度をクリックするとタスクが降順に並んでいる場合' do
       it '優先度が一番高いタスク（高）が一番上に表示される' do
         click_on '優先度'
@@ -75,7 +82,7 @@ RSpec.describe 'タスク管理機能', type: :system do
   end
 
   describe '検索機能' do
-    let!(:task3) { FactoryBot.create(:third_task) }
+    let!(:task3) { FactoryBot.create(:task3, user: user) }
     before do
       visit tasks_path
     end
@@ -93,7 +100,6 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(page).to have_selector 'td', text: '未着手'
       end
     end
-
     context 'タイトルのあいまい検索とステータス検索をした場合' do
       it '検索キーワードをタイトルに含み、かつステータスに完全一致するタスクが絞り込まれる' do
         fill_in 'タスク名', with: 'first'
@@ -103,11 +109,10 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
     end
   end
-
   describe '詳細表示機能' do
     context '任意のタスク詳細画面に遷移した場合' do
       it '該当タスクの内容が表示される' do
-        visit task_path(task1)
+        visit task_path(task)
         expect(page).to have_content 'first_title'
         expect(page).to have_content 'first_content'
         expect(page).to have_content '2023-04-25'
