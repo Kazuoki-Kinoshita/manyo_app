@@ -35,9 +35,13 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    flash[:notice] = "ユーザを削除しました！"
-    redirect_to admin_users_path
+    if @user.destroy
+      flash[:notice] = "ユーザを削除しました！"
+      redirect_to admin_users_path
+    else
+      flash[:notice] = "最後の管理者は削除できません！"
+      redirect_to admin_users_path
+    end
   end
 
   
