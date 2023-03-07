@@ -3,6 +3,33 @@
 <p>ユーザ名：<%= @user.name %></p>
 <p>メールアドレス：<%= @user.email %></p>
 
+<p><%= @user.tasks.count %>件のタスクがあります</p>
+<table>
+  <ul>
+    <tr>
+      <th><%= t("view.task.user_name") %></th>
+      <th><%= t("view.task.title") %></th>
+      <th><%= t("view.task.content") %></th>
+      <th><%= "終了期限" %></th>
+      <th><%= t("view.task.created_at") %></th>
+      <th><%= t("view.task.status") %></th>
+      <th><%= "優先度" %></th>
+    </tr>
+
+    <% @user.tasks.each do |task| %>
+      <tr>
+        <td><%= task.user.name %></td>
+        <td><%= task.title %></td>
+        <td><%= task.content %></td>
+        <td><%= task.expired_at %></td>
+        <td><%= task.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+        <td><%= task.status %></td>
+        <td><%= task.priority %></td>
+      </tr>
+    <% end %>
+  </ul>
+</table>
+
 <% if @user.admin? %>
   <%= link_to "管理者画面はこちら", admin_users_path, class: "btn btn-primary" %>
 <% end %>

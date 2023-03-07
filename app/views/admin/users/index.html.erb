@@ -11,20 +11,23 @@
       <th><%= "タスク数" %></th>
       <th><%= "管理者権限" %></th>
     </tr>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.id %></td>
-        <td><%= user.name %></td>
-        <td><%= user.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
-        <td><%= user.tasks.count %></td>
-        <% if user.admin %>
-          <td><%= "あり" %></td>
-        <% else %>
-          <td><%= "なし"%></td>
-        <% end %>
-        <td><%= link_to t("view.link_to.edit"), edit_admin_user_path(user.id), class: "btn btn-outline-secondary" %></td>
-        <td><%= link_to t("view.link_to.destroy"), admin_user_path(user.id), method: :delete, class: "btn btn-outline-danger" %></td>
-      </tr>
-    <% end %>
+    <tbody class='user_row'>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.name %></td>
+          <td><%= user.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+          <td><%= user.tasks.count %></td>
+          <% if user.admin %>
+            <td><%= "あり" %></td>
+          <% else %>
+            <td><%= "なし"%></td>
+          <% end %>
+          <td><%= link_to t("view.link_to.show"), user_path(user.id), class: "btn btn-outline-info" %></td>
+          <td><%= link_to t("view.link_to.edit"), edit_admin_user_path(user.id), class: "btn btn-outline-secondary" %></td>
+          <td><%= link_to t("view.link_to.destroy"), admin_user_path(user.id), method: :delete, class: "btn btn-outline-danger" %></td>
+        </tr>
+      <% end %>
+    </tbody>
   </ul>
 </table>

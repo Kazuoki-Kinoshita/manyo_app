@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   skip_before_action :login_required
-  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :admin_user
 
   def index
@@ -31,6 +31,9 @@ class Admin::UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def show
   end
 
   def destroy
