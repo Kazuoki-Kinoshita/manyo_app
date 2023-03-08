@@ -14,5 +14,5 @@ class Task < ApplicationRecord
   scope :status_search, -> (status)  { where(status:status) }
   belongs_to :user
   has_many :taggings, dependent: :destroy
-  has_many :tagging_tags, through: :taggings, source: :tag
+  has_many :tags, through: :taggings
 end

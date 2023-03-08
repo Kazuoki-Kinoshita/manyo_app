@@ -30,6 +30,7 @@ class TasksController < ApplicationController
 
   def create
     @task = current_user.tasks.build(task_params)
+    byebug
     if @task.save
       flash[:notice] = "タスクを作成しました！"
       redirect_to tasks_path
@@ -60,7 +61,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :content, :expired_at, :status, :priority)
+    params.require(:task).permit(:title, :content, :expired_at, :status, :priority, tag_ids: [])
   end
   
   def set_task

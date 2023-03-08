@@ -1,4 +1,4 @@
 class Tag < ApplicationRecord
   has_many :taggings, dependent: :destroy
-  has_many :tagging_tasks, through: :taggings, source: :task
+  has_many :tasks, through: :taggings
 end
