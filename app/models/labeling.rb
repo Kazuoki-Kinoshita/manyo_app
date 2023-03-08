@@ -1,2 +1,0 @@
-class Labeling < ApplicationRecord
-end
