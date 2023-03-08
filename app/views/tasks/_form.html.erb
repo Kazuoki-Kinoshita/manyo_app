@@ -19,7 +19,7 @@
   <p><%= f.select :status, Task.statuses.keys, {include_blank: "選択してください"} %></p>
   <%= f.label :priority %>
   <p><%= f.select :priority, Task.priorities.keys, {include_blank: "選択してください"} %></p>
-
+  <%= f.label t("view.task.tag") %>
   <% Tag.all.each do |tag| %>
     <%= f.check_box :tag_ids, { multiple: true, checked: tag[:checked], disabled: tag[:disabled], include_hidden: false}, tag[:id] %>
     <label style="background-color: aquamarine"><%= tag.name %></label>

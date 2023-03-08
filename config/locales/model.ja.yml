@@ -3,6 +3,7 @@ ja:
     models:
       task: タスク
       session: ログイン
+      tag: ラベル
 
     attributes:
       task:
@@ -20,6 +21,8 @@ ja:
         password_confirmation: 確認用パスワード
         remember_me: ログインを記憶
         admin: 管理者権限
+      tag:
+        name: ラベル
 
   view:
     link_to:
@@ -47,6 +50,9 @@ ja:
       created_at_show: 登録日時：
       user_name: ユーザ名
       user_name_show: ユーザ名：
+      priority: 優先度
+      tag: ラベル
+      tag_show: ラベル：
   session:
     email: メールアドレス
     password: パスワード

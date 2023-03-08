@@ -22,6 +22,7 @@
         <th><%= t("view.task.created_at") %></th>
         <th><%= t("view.task.status") %></th>
         <th><%= link_to "優先度", tasks_path(sort_priority: "true") %></th>
+        <th><%= t("view.task.tag") %></th>
     </tbody>
     </tr>
 
@@ -35,6 +36,9 @@
           <td><%= task.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
           <td><%= task.status %></td>
           <td><%= task.priority %></td>
+          <td><% task.tags.each do |tag| %>
+            <label style="background-color: aquamarine"><%= tag.name %></label>
+          <% end %></td>
           <td><%= link_to t("view.link_to.show"), task_path(task.id), class: "btn btn-outline-primary" %></td>
           <td><%= link_to t("view.link_to.edit"), edit_task_path(task.id), class: "btn btn-outline-secondary" %></td>
           <td><%= link_to t("view.link_to.destroy"), task_path(task.id), method: :delete, class: "btn btn-outline-danger" %></td>

@@ -12,7 +12,8 @@
       <th><%= "終了期限" %></th>
       <th><%= t("view.task.created_at") %></th>
       <th><%= t("view.task.status") %></th>
-      <th><%= "優先度" %></th>
+      <th><%= t("view.task.priority") %></th>
+      <th><%= t("view.task.tag") %></th>
     </tr>
 
     <% @user.tasks.each do |task| %>
@@ -23,6 +24,9 @@
         <td><%= task.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
         <td><%= task.status %></td>
         <td><%= task.priority %></td>
+        <td><% task.tags.each do |tag| %>
+          <label style="background-color: aquamarine"><%= tag.name %></label>
+        <% end %></td>
       </tr>
     <% end %>
   </ul>
