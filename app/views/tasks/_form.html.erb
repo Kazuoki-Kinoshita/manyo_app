@@ -20,9 +20,15 @@
   <%= f.label :priority %>
   <p><%= f.select :priority, Task.priorities.keys, {include_blank: "選択してください"} %></p>
   <%= f.label t("view.task.tag") %>
+  
   <% Tag.all.each do |tag| %>
-    <%= f.check_box :tag_ids, { multiple: true, checked: tag[:checked], disabled: tag[:disabled], include_hidden: false}, tag[:id] %>
-    <label style="background-color: aquamarine"><%= tag.name %></label>
+    <% if action_name == 'new' || action_name == 'create' %>
+      <%= f.check_box :tag_ids, { multiple: true, checked: tag[:checked], disabled: tag[:disabled], include_hidden: false}, tag[:id] %>
+      <label style="background-color: aquamarine"><%= tag.name %></label>
+    <% elsif action_name == "edit" || action_name == "update" %>
+      <%= f.check_box :tag_ids, { multiple: true, checked: @task.tag_ids.include?(tag.id), disabled: tag[:disabled], include_hidden: false}, tag[:id], "" %>
+      <label style="background-color: aquamarine"><%= tag.name %></label>
+    <% end %>
   <% end %>
   <p><%= f.submit %></p>
 <% end %>

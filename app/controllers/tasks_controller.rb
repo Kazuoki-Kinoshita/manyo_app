@@ -43,8 +43,16 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      flash[:notice] = "タスクを編集しました！"
-      redirect_to tasks_path
+      if params[:task][:tag_ids].present?
+        flash[:notice] = "タスクを編集しました！"
+        redirect_to tasks_path
+      else
+        @task.taggings.each do |task|
+          task.destroy if task.task_id == @task.id
+        end
+        flash[:notice] = "タスクを編集しました！"
+        redirect_to tasks_path
+      end       
     else
       render :edit
     end
