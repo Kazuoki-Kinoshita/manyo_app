@@ -6,6 +6,12 @@ FactoryBot.define do
     status { '着手中' }
     priority { '高' }
     user {}
+    after(:create) do |task|
+      tag = create(:tag)
+      tag2 = create(:tag2)
+      create(:tagging, task: task, tag: tag)
+      create(:tagging, task: task, tag: tag2)
+    end
   end
 
   factory :task2, class: Task do
@@ -15,6 +21,10 @@ FactoryBot.define do
     status { '未着手' }
     priority { '低' }
     user {}
+    after(:create) do |task2|
+      tag3 = create(:tag3)
+      create(:tagging, task: task2, tag: tag3)
+    end
   end
 
   factory :task3, class: Task do
