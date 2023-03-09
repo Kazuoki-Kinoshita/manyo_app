@@ -87,5 +87,3 @@ RSpec.describe 'ラベル管理機能', type: :system do
     end
   end
 end
-
-
