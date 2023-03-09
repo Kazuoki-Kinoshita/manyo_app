@@ -1,4 +1,4 @@
-<h1>管理画面のユーザ編集</h1>
+<h1><%= t("admin.user_edit") %></h1>
 
 <%= form_with(model: @user, local: true, url: admin_user_path(@user.id)) do |f| %>
   <% if @user.errors.any? %>

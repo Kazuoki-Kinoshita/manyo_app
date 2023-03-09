@@ -3,6 +3,7 @@ ja:
     models:
       task: タスク
       session: ログイン
+      user: ユーザ
       tag: ラベル
 
     attributes:
@@ -42,6 +43,7 @@ ja:
       content: 内容
       content_show: 内容：
       expired_at: 終了期限：
+      expired: "終了期限"
       status: ステータス
       status_show: ステータス：
       priority: 優先度
@@ -50,9 +52,30 @@ ja:
       created_at_show: 登録日時：
       user_name: ユーザ名
       user_name_show: ユーザ名：
+      user_id: ユーザID
       priority: 優先度
       tag: ラベル
       tag_show: ラベル：
+      choice : "選択してください"
+      count: タスク数
+    user:
+      registration: ユーザ登録
+      account: アカウント詳細
+      name: ユーザ名：
+      email: メールアドレス：
+      task_count: 件のタスクがあります
+      admin: "管理者画面はこちら"
   session:
     email: メールアドレス
     password: パスワード
+    login: ログイン
+    login_title: ログイン画面
+  admin:
+    user_registration: 管理画面のユーザ登録
+    user_edit: 管理画面のユーザ編集
+    user_index: 管理画面のユーザ一覧画面
+    user_new: ユーザ新規登録
+    administrator_yes: あり
+    administrator_no: なし
+    administrator: 管理者権限
+

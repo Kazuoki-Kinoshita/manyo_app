@@ -16,9 +16,9 @@
   <%= f.label :expired_at %>
   <p><%= f.date_field :expired_at %></p>
   <%= f.label :status %>
-  <p><%= f.select :status, Task.statuses.keys, {include_blank: "選択してください"} %></p>
+  <p><%= f.select :status, Task.statuses.keys, {include_blank: t("view.task.choice") } %></p>
   <%= f.label :priority %>
-  <p><%= f.select :priority, Task.priorities.keys, {include_blank: "選択してください"} %></p>
+  <p><%= f.select :priority, Task.priorities.keys, {include_blank: t("view.task.choice") } %></p>
   <%= f.label t("view.task.tag") %>
   
   <% Tag.all.each do |tag| %>
