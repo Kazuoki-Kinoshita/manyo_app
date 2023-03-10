@@ -28,8 +28,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(page).to have_content '中'
       end
     end
-  end
-  
+  end  
   describe '一覧表示機能' do
     before do
       visit tasks_path
@@ -80,7 +79,6 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
     end
   end
-
   describe '検索機能' do
     let!(:task3) { FactoryBot.create(:task3, user: user) }
     before do

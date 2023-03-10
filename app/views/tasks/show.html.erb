@@ -7,4 +7,8 @@
 <p><%= t("view.task.created_at_show") %><%= @task.created_at.strftime("%Y-%m-%d %H:%M:%S") %></p>
 <p><%= t("view.task.status_show") %><%= @task.status %></p>
 <p><%= t("view.task.priority_show") %><%= @task.priority %></p>
+<%= t("view.task.tag_show") %>
+<% @task.tags.each do |tag| %>
+  <label style="background-color: aquamarine"><%= tag.name %></label>
+<% end %><br>
 <%= link_to t("view.link_to.back"), tasks_path, class: "btn btn-secondary" %>

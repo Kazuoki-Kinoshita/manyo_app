@@ -1,4 +1,4 @@
-<h1>管理画面のユーザ登録</h1>
+<h1><%= t("admin.user_registration") %></h1>
 
 <%= form_with(model: @user, local: true, url: admin_users_path) do |f| %>
   <% if @user.errors.any? %>
@@ -20,6 +20,6 @@
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %><br>
   <%= f.label :admin %>
-  <%= f.select :admin, [['なし', false],['あり', true]]%>
+  <%= f.select :admin, [[t("admin.administrator_no") , false],[t("admin.administrator_yes"), true]]%>
   <%= f.submit %><br>
 <% end %>

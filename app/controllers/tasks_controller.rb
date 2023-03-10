@@ -3,19 +3,8 @@ class TasksController < ApplicationController
 
   def index
     @tasks = current_user.tasks.created_at_sorted.page(params[:page])
-    if params[:sort_expired]
-      @tasks = current_user.tasks.expired_at_sorted.page(params[:page])
-    elsif params[:sort_priority]
-      @tasks = current_user.tasks.priority_sorted.page(params[:page])
-    elsif params[:task].present?
-      if params[:task][:title].present? && params[:task][:status].present?
-        @tasks = current_user.tasks.title_and_status_search(params[:task][:title], params[:task][:status]).page(params[:page])
-      elsif params[:task][:title].present?
-        @tasks = current_user.tasks.title_search(params[:task][:title]).page(params[:page])
-      elsif params[:task][:status].present?
-        @tasks = current_user.tasks.status_search(params[:task][:status]).page(params[:page])
-      end
-    end
+    click_sort_expired_and_priority
+    click_search
   end
 
   def show
@@ -43,8 +32,16 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      flash[:notice] = "タスクを編集しました！"
-      redirect_to tasks_path
+      if params[:task][:tag_ids].present?
+        flash[:notice] = "タスクを編集しました！"
+        redirect_to tasks_path
+      else
+        @task.taggings.each do |task|
+          task.destroy if task.task_id == @task.id
+        end
+        flash[:notice] = "タスクを編集しました！"
+        redirect_to tasks_path
+      end       
     else
       render :edit
     end
@@ -60,7 +57,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :content, :expired_at, :status, :priority)
+    params.require(:task).permit(:title, :content, :expired_at, :status, :priority, tag_ids: [])
   end
   
   def set_task

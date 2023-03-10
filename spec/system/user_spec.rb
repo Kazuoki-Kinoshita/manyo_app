@@ -25,7 +25,6 @@ RSpec.describe 'ユーザ管理機能', type: :system do
       end
     end
   end
-
   describe 'セッション機能' do
     before do
       visit new_session_path
@@ -59,7 +58,6 @@ RSpec.describe 'ユーザ管理機能', type: :system do
       end
     end
   end
-
   describe '管理画面機能(管理ユーザ)' do
     before do
       visit new_session_path

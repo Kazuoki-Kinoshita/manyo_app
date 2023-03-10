@@ -22,13 +22,13 @@ user
 |password_digest|  string  |
 |    admin      |  boolean |
 
-label  
+tag  
 |    物理名      | データ型  |
 | ------------- | -------- |
 |      id       |  integer |
-|  label_name   |  string  |
+|     name      |  string  |
 
-labeling  
+tagging  
 |    物理名      | データ型  |
 | ------------- | -------- |
 |      id       |  integer |

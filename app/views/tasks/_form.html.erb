@@ -16,8 +16,19 @@
   <%= f.label :expired_at %>
   <p><%= f.date_field :expired_at %></p>
   <%= f.label :status %>
-  <p><%= f.select :status, Task.statuses.keys, {include_blank: "選択してください"} %></p>
+  <p><%= f.select :status, Task.statuses.keys, {include_blank: t("view.task.choice") } %></p>
   <%= f.label :priority %>
-  <p><%= f.select :priority, Task.priorities.keys, {include_blank: "選択してください"} %></p>
+  <p><%= f.select :priority, Task.priorities.keys, {include_blank: t("view.task.choice") } %></p>
+  <%= f.label t("view.task.tag") %>
+  
+  <% Tag.all.each do |tag| %>
+    <% if action_name == 'new' || action_name == 'create' %>
+      <%= f.check_box :tag_ids, { multiple: true, checked: tag[:checked], disabled: tag[:disabled], include_hidden: false}, tag[:id] %>
+      <%= f.label :tag_ids, tag.name, value: tag[:id] %>
+    <% elsif action_name == "edit" || action_name == "update" %>
+      <%= f.check_box :tag_ids, { multiple: true, checked: @task.tag_ids.include?(tag.id), disabled: tag[:disabled], include_hidden: false}, tag[:id], "" %>
+      <%= f.label :tag_ids, tag.name, value: tag[:id] %>
+    <% end %>
+  <% end %>
   <p><%= f.submit %></p>
 <% end %>

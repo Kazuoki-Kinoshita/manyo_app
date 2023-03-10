@@ -1,18 +1,18 @@
-<h1>アカウント詳細</h1>
+<h1><%= t("view.user.account") %></h1>
 
-<p>ユーザ名：<%= @user.name %></p>
-<p>メールアドレス：<%= @user.email %></p>
-
-<p><%= @user.tasks.count %>件のタスクがあります</p>
+<p><%= t("view.user.name") %><%= @user.name %></p>
+<p><%= t("view.user.email") %><%= @user.email %></p>
+<p><%= @user.tasks.size %><%= t("view.user.task_count") %></p>
 <table>
   <ul>
     <tr>
       <th><%= t("view.task.title") %></th>
       <th><%= t("view.task.content") %></th>
-      <th><%= "終了期限" %></th>
+      <th><%= t("view.task.expired") %></th>
       <th><%= t("view.task.created_at") %></th>
       <th><%= t("view.task.status") %></th>
-      <th><%= "優先度" %></th>
+      <th><%= t("view.task.priority") %></th>
+      <th><%= t("view.task.tag") %></th>
     </tr>
 
     <% @user.tasks.each do |task| %>
@@ -23,11 +23,14 @@
         <td><%= task.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
         <td><%= task.status %></td>
         <td><%= task.priority %></td>
+        <td><% task.tags.each do |tag| %>
+          <label style="background-color: aquamarine"><%= tag.name %></label>
+        <% end %></td>
       </tr>
     <% end %>
   </ul>
 </table>
 
 <% if @user.admin? %>
-  <%= link_to "管理者画面はこちら", admin_users_path, class: "btn btn-primary" %>
+  <%= link_to t("view.user.admin"), admin_users_path, class: "btn btn-primary" %>
 <% end %>
