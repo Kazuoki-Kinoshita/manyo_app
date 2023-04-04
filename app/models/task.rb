@@ -4,8 +4,14 @@ class Task < ApplicationRecord
   validates :expired_at, presence: true
   validates :status, presence: true
   validates :priority, presence: true
+
   enum status: { 未着手: 0, 着手中: 1, 完了: 2}
   enum priority: { 低: 0, 中: 1, 高: 2}
+  
+  belongs_to :user
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
+  
   scope :created_at_sorted, -> { order(created_at: :desc) }
   scope :expired_at_sorted, -> { order(expired_at: :desc) }
   scope :priority_sorted, -> { order(priority: :desc) }
@@ -16,7 +22,4 @@ class Task < ApplicationRecord
   scope :title_search, -> (title)  { where("title LIKE ?", "%#{title}%") }
   scope :status_search, -> (status)  { where(status: status) }
   scope :tag_search, -> (current_user_id)  { where(user_id: current_user_id) }
-  belongs_to :user
-  has_many :taggings, dependent: :destroy
-  has_many :tags, through: :taggings
 end
